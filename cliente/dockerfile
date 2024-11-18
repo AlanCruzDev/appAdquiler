@@ -1,0 +1,10 @@
+FROM openjdk:11-jre-slim
+
+EXPOSE 9092
+
+
+COPY target/cliente-0.0.1-SNAPSHOT.war  cliente-curso.jar
+
+ENTRYPOINT [ "java", "-jar","cliente-curso.jar" ]
+
+CMD ["./mvnw", "spring-boot:run"]

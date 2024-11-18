@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+
+  automovil-server:
+    container_name: Automovil-Server
+    image: automovil-0.0.1 
+    build: 
+      context: ./automovil
+    ports:
+      - "9091:9091"
+    networks:
+      - red_micro
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.100.10:5432/adquiler
+      - SPRING_DATASOURCE_USERNAME=curso
+      - SPRING_DATASOURCE_PASSWORD=alancruz1998
+  
+  cliente-server:
+    container_name: cliente-server
+    image: cliente-0.0.1
+    build: 
+      context: ./cliente
+    ports:
+      - "9092:9092"
+    networks:
+      - red_micro
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.100.10:5432/adquiler
+      - SPRING_DATASOURCE_USERNAME=curso
+      - SPRING_DATASOURCE_PASSWORD=alancruz1998
+      
+  empleado-server:
+    container_name: Empleado-Server
+    image: empleado-0.0.1
+    build: 
+      context: ./empleado
+    ports:
+      - "9090:9090"
+    networks:
+      - red_micro
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.100.10:5432/adquiler
+      - SPRING_DATASOURCE_USERNAME=curso
+      - SPRING_DATASOURCE_PASSWORD=alancruz1998
+networks:
+  red_micro:
+    external: true
+
+  

@@ -1,0 +1,10 @@
+FROM openjdk:11-jre-slim
+
+EXPOSE 9090
+
+
+COPY target/empleado-0.0.1-SNAPSHOT.war  empleado-curso.jar
+
+ENTRYPOINT [ "java", "-jar","empleado-curso.jar" ]
+
+CMD ["./mvnw", "spring-boot:run"]

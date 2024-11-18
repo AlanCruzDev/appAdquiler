@@ -1,0 +1,10 @@
+FROM openjdk:11-jre-slim
+
+EXPOSE 9191
+
+
+COPY target/app-0.0.1-SNAPSHOT.war  adquilacion-curso.jar
+
+ENTRYPOINT [ "java", "-jar","adquilacion-curso.jar" ]
+
+CMD ["./mvnw", "spring-boot:run"]
